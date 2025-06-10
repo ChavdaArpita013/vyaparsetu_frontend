@@ -3,6 +3,9 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Portfolio from './pages/Portfolio'
 import Transaction from './pages/Transactions';
 import Statement from './pages/Statement';
+import Home from './pages/Home';
+import Trending from './pages/Trending';
+import MyAccount from './pages/MyAccount';
 
 function App() {
 
@@ -11,6 +14,9 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
+          <Route path='/' element={<Home />} > </Route>
+          <Route path='/top' element={<Trending />}></Route>
+          <Route path='/my-account' element={<MyAccount />}></Route>
           <Route path='/portfolio' element={<Portfolio />}></Route>
           <Route path='/transactions' element={<Transaction />}></Route>
           <Route path='/statement' element={<Statement />}></Route>

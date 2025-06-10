@@ -86,7 +86,7 @@ const Navbar = () => {
                                         <BarChart2 className="w-5 h-5" />
                                         <span>Profit / Loss</span>
                                     </Link>
-                                    <Link className="flex items-center space-x-3 cursor-pointer hover:text-blue-400 font-light">
+                                    <Link to={"/my-account"} className="flex items-center space-x-3 cursor-pointer hover:text-blue-400 font-light">
                                         <User className="w-5 h-5" />
                                         <span>My Account</span>
                                     </Link>
