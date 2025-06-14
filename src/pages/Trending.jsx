@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { X } from "lucide-react";
 import axios from "axios";
 import debounce from "lodash.debounce";
+import { callAvAPI } from '@/API/aplhavantageAPIs';
+import { Link } from 'react-router-dom';
 
 const Trending = () => {
     const [searchTerm, setSearchTerm] = useState('');
@@ -45,10 +47,11 @@ const Trending = () => {
         // Load top gainers and losers
         const fetchTopData = async () => {
             try {
-                const gainersRes = await axios.get('https://www.alphavantage.co/query?function=TOP_GAINERS_LOSERS&apikey=demo');
-
-                setGainers(gainersRes.data.top_gainers);
-                setLosers(gainersRes.data.top_losers);
+                const gainersRes = await callAvAPI({
+                    function: "TOP_GAINERS_LOSERS"
+                })
+                setGainers(gainersRes.top_gainers);
+                setLosers(gainersRes.top_losers);
             } catch (error) {
                 console.error("Top stocks API error", error);
             }
@@ -83,14 +86,16 @@ const Trending = () => {
             {showResults && searchResults.length > 0 && (
                 <div className="mt-4 space-y-2">
                     {searchResults.map((stock) => (
-                        <Card key={stock.id} className="bg-gray-800 border-gray-700">
-                            <CardContent className="p-3">
-                                <div className="flex justify-between">
-                                    <span>{stock.name}</span>
-                                    <span className="text-green-400">{stock.price}</span>
-                                </div>
-                            </CardContent>
-                        </Card>
+                        <Link to={`/stock/${stock.name}`}>
+                            <Card key={stock.id} className="bg-gray-800 border-gray-700">
+                                <CardContent className="p-3">
+                                    <div className="flex justify-between">
+                                        <span>{stock.name}</span>
+                                        <span className="text-green-400">{stock.price}</span>
+                                    </div>
+                                </CardContent>
+                            </Card>
+                        </Link>
                     ))}
                 </div>
             )}
