@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactApexChart from "react-apexcharts";
 import { useParams } from "react-router-dom";
 import { callAvAPI } from "@/API/aplhavantageAPIs";
+import { Button } from "@/components/ui/button";
 
 const ApexChart = () => {
     const { stockName } = useParams();
@@ -49,16 +50,25 @@ const ApexChart = () => {
 
     return (
         <div className="p-4 md:p-6 text-white min-h-screen bg-black">
-            <h2 className="text-lg md:text-xl font-semibold mb-4">
-                {stockName} - <select className="bg-black">
-                    <option>5min</option>
-                    <option>10min</option>
-                    <option>15min</option>
-                    <option>30min</option>
-                    <option>60min</option>
-                </select>
-            </h2>
+            {/* Header row with stock name, dropdown, and buttons */}
+            <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4 mb-4">
+                <div className="flex items-center gap-2">
+                    <h2 className="text-lg md:text-xl font-semibold">{stockName}</h2>
+                    <select className="bg-black border border-gray-600 text-white px-2 py-1 rounded">
+                        <option>5min</option>
+                        <option>10min</option>
+                        <option>15min</option>
+                        <option>30min</option>
+                        <option>60min</option>
+                    </select>
+                </div>
+                <div className="flex gap-2 self-end md:self-auto">
+                    <Button className="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded">BUY</Button>
+                    <Button className="bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded">SELL</Button>
+                </div>
+            </div>
 
+            {/* Chart area */}
             {loading ? (
                 <p className="text-gray-300">Loading chart...</p>
             ) : error ? (
