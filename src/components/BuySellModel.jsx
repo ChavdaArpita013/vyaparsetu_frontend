@@ -5,10 +5,11 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { Label } from "@/components/ui/label";
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert";
+import { AlertTriangle } from "lucide-react";
 
 // Simulate wallet and holding state
 const AVAILABLE_BALANCE = 50000;
-const HOLDINGS = 100;
+const HOLDINGS = 10;
 
 const BuySellModal = ({ mode = "buy", stockName = "TCS", currentPrice = "3845.00" }) => {
     const [quantity, setQuantity] = useState(1);
@@ -36,14 +37,14 @@ const BuySellModal = ({ mode = "buy", stockName = "TCS", currentPrice = "3845.00
     };
 
     return (
-        <Dialog>
-            <DialogTrigger asChild>
+        <Dialog >
+            <DialogTrigger asChild >
                 <Button variant={mode === "buy" ? "default" : "destructive"}>
                     {mode === "buy" ? "Buy" : "Sell"}
                 </Button>
             </DialogTrigger>
 
-            <DialogContent className="sm:max-w-[450px]">
+            <DialogContent className="sm:max-w-[450px] bg-gray-900">
                 <DialogHeader>
                     <DialogTitle>{mode === "buy" ? "Buy" : "Sell"} {stockName}</DialogTitle>
                 </DialogHeader>
@@ -84,7 +85,8 @@ const BuySellModal = ({ mode = "buy", stockName = "TCS", currentPrice = "3845.00
                     </div>
 
                     {error && (
-                        <Alert variant="destructive">
+                        <Alert variant="destructive" className="bg-red-600">
+                            <AlertTriangle/>
                             <AlertTitle>Error</AlertTitle>
                             <AlertDescription>{error}</AlertDescription>
                         </Alert>

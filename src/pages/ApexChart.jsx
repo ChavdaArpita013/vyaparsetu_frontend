@@ -3,6 +3,7 @@ import ReactApexChart from "react-apexcharts";
 import { useParams } from "react-router-dom";
 import { callAvAPI } from "@/API/aplhavantageAPIs";
 import { Button } from "@/components/ui/button";
+import BuySellModal from "@/components/BuySellModel";
 
 const ApexChart = () => {
     const { stockName } = useParams();
@@ -63,8 +64,10 @@ const ApexChart = () => {
                     </select>
                 </div>
                 <div className="flex gap-2 self-end md:self-auto">
-                    <Button className="bg-green-600 hover:bg-green-700 text-white px-4 py-1 rounded">BUY</Button>
-                    <Button className="bg-red-600 hover:bg-red-700 text-white px-4 py-1 rounded">SELL</Button>
+
+                    <BuySellModal mode = "buy" stockName = "TCS" currentPrice = "3845.00"  />
+                    <BuySellModal mode = "sell" stockName = "TCS" currentPrice = "3845.00"  />
+
                 </div>
             </div>
 

@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import Trending from './pages/Trending';
 import MyAccount from './pages/MyAccount';
 import ApexChart from './pages/ApexChart';
+import Login from './pages/Login';
 
 function App() { 
 
@@ -16,6 +17,7 @@ function App() {
         <Navbar />
         <Routes>
           <Route path='/' element={<Home />} > </Route>
+          <Route path='/login' element={<Login />} ></Route>
           <Route path='/stock/:stockName' element={<ApexChart />} ></Route>
           <Route path='/top' element={<Trending />}></Route>
           <Route path='/my-account' element={<MyAccount />}></Route>
